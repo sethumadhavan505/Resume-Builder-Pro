@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Build Web Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-mark">§</span>
+    <span class="brand-name">Resume Builder</span>
+  </div>
+  <nav class="header-nav">
+    <span class="doc-tag" id="doc-status">DOC.01 — DRAFT</span>
+    <button class="btn btn-ghost" id="save-btn">Save</button>
+    <button class="btn btn-brass" id="export-btn">Export PDF</button>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">A DESK FOR YOUR CAREER PAPERS</p>
+    <h1>Every resume<br>deserves a<br><em>proper draft.</em></h1>
+    <p class="hero-sub">Fill in the fields on the left. Watch a real page take shape on the right. No account required to start — sign in later to keep drafts across visits.</p>
+    <button class="btn btn-brass btn-lg" id="start-btn">Open the desk ↓</button>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="paper-stack">
+      <div class="paper-sheet sheet-3"></div>
+      <div class="paper-sheet sheet-2"></div>
+      <div class="paper-sheet sheet-1">
+        <div class="clip"></div>
+        <div class="sheet-line title"></div>
+        <div class="sheet-line sub"></div>
+        <div class="sheet-line"></div>
+        <div class="sheet-line"></div>
+        <div class="sheet-line short"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESK (BUILDER) ============ -->
+<main class="desk" id="desk">
+
+  <!-- LEFT: FORM WITH FOLDER TABS -->
+  <section class="drawer">
+    <div class="tabs" role="tablist" aria-label="Resume sections">
+      <button class="tab active" data-section="contact" role="tab" aria-selected="true">Contact</button>
+      <button class="tab" data-section="summary" role="tab" aria-selected="false">Summary</button>
+      <button class="tab" data-section="experience" role="tab" aria-selected="false">Experience</button>
+      <button class="tab" data-section="education" role="tab" aria-selected="false">Education</button>
+      <button class="tab" data-section="skills" role="tab" aria-selected="false">Skills</button>
+    </div>
+
+    <div class="tab-panels">
+
+      <!-- CONTACT -->
+      <div class="panel active" data-panel="contact">
+        <label>Full name
+          <input type="text" id="f-name" placeholder="Ada Lovelace">
+        </label>
+        <label>Title / role
+          <input type="text" id="f-role" placeholder="Product Designer">
+        </label>
+        <div class="field-row">
+          <label>Email
+            <input type="email" id="f-email" placeholder="ada@example.com">
+          </label>
+          <label>Phone
+            <input type="tel" id="f-phone" placeholder="+91 98765 43210">
+          </label>
+        </div>
+        <div class="field-row">
+          <label>Location
+            <input type="text" id="f-location" placeholder="Chennai, India">
+          </label>
+          <label>Website / LinkedIn
+            <input type="text" id="f-link" placeholder="linkedin.com/in/ada">
+          </label>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="panel" data-panel="summary">
+        <label>Professional summary
+          <textarea id="f-summary" rows="6" placeholder="Two or three sentences on who you are and the value you bring."></textarea>
+        </label>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="panel" data-panel="experience">
+        <div id="experience-list" class="repeatable-list"></div>
+        <button class="btn btn-ghost btn-sm" id="add-experience" type="button">+ Add position</button>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="panel" data-panel="education">
+        <div id="education-list" class="repeatable-list"></div>
+        <button class="btn btn-ghost btn-sm" id="add-education" type="button">+ Add school</button>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="panel" data-panel="skills">
+        <label>Skills, comma separated
+          <textarea id="f-skills" rows="4" placeholder="Figma, Design systems, Prototyping, User research"></textarea>
+        </label>
+      </div>
+
+    </div>
+
+    <div class="template-switch">
+      <span class="switch-label">TEMPLATE</span>
+      <button class="template-option active" data-template="classic">Classic</button>
+      <button class="template-option" data-template="modern">Modern</button>
+      <button class="template-option locked" data-template="editorial">
+        Editorial <span class="lock-tag">Premium</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- RIGHT: LIVE PREVIEW -->
+  <section class="light-well">
+    <div class="paper-wrap">
+      <div class="paperclip-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 48" width="20" height="40"><path d="M12 4 C18 4 21 8 21 14 L21 34 C21 40 17 44 12 44 C7 44 3 40 3 34 L3 12 C3 8 6 6 9 6 C12 6 14 8 14 12 L14 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </div>
+      <article class="resume-page template-classic" id="resume-page">
+        <header class="r-header">
+          <h1 id="r-name">Your Name</h1>
+          <p id="r-role">Your Role</p>
+          <p class="r-contact" id="r-contact">email · phone · location</p>
+        </header>
+        <section class="r-section" id="r-summary-section">
+          <h2>Summary</h2>
+          <p id="r-summary"></p>
+        </section>
+        <section class="r-section" id="r-experience-section">
+          <h2>Experience</h2>
+          <div id="r-experience"></div>
+        </section>
+        <section class="r-section" id="r-education-section">
+          <h2>Education</h2>
+          <div id="r-education"></div>
+        </section>
+        <section class="r-section" id="r-skills-section">
+          <h2>Skills</h2>
+          <p id="r-skills"></p>
+        </section>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Resume Builder</p>
+
+<!-- html2pdf for client-side export, no backend needed -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
