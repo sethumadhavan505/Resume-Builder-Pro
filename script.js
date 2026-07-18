@@ -111,3 +111,9 @@ orientation:'portrait'
 .save();
 
 }
+document.getElementById("r-name").textContent = formData.name;
+document.getElementById("r-role").textContent = formData.role;
+document.getElementById("r-email").textContent = formData.email;
+document.getElementById("r-phone").textContent = formData.phone;
+document.getElementById("r-linkedin").textContent = formData.linkedin;
+document.getElementById("r-summary").textContent = formData.summary;
